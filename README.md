@@ -1,0 +1,85 @@
+# Understanding GPU Energy Dynamics in HPC Applications
+
+Poster presented at the **Smoky Mountains Computational Sciences and Engineering Conference
+([SMC 2025](https://events.ornl.gov/smc2025/))**, The Westin Chattanooga, Tennessee,
+31 August – 5 September 2025.
+
+📄 **[Read the poster page](https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/)** ·
+**[Download the PDF](https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/smc2025-poster.pdf)**
+
+**Authors** — Ethan Puyaubreau (Université Paris-Saclay, France); Daniel Arndt, Jakob Bludau,
+Damien Lebrun-Grandié (Oak Ridge National Laboratory, Computational Science and Engineering Division)
+
+## Abstract
+
+Energy efficiency is becoming as decisive as raw performance in high-performance computing, yet
+existing profiling tools struggle to attribute power draw to fine-grained computational events:
+hardware counters sample coarsely, and software instrumentation adds significant overhead.
+
+This work extends the [Kokkos Tools](https://github.com/kokkos/kokkos-tools) framework with a
+Variorum/NVML connector that samples GPU power from a background daemon and aligns user-defined
+region timestamps with the power trace in a postprocessing step — requiring no changes to
+application source code.
+
+The poster characterises the resolution limits of that approach. NVML exposes instantaneous power
+only every 100 ms, and the value reported covers just the last 25 ms of each interval, so the
+sub-10 ms kernels typical of HPC codes cannot be profiled individually. Larger user-defined regions,
+however, remain reliably measurable. A power heatmap across compute- and memory-bound workloads on
+an NVIDIA H100 NVL shows that steady-state power depends strongly on workload type, and an ArborX
+DBSCAN case study compares two implementations — `fdbscan` and `fdbscan-dense` — that have the same
+runtime and return the same result while consuming 925.1 J and 784.8 J respectively.
+
+**Minimal runtime does not imply energy efficiency.** GPU power dynamics mandate per-algorithm,
+per-hardware measurements, and current tools lack the resolution required to provide them.
+
+## External reference
+
+Cited in the U.S. Department of Energy technical report *S4PST: Stewardship of Programming Systems
+and Tools* (**ORNL/SPR-2026/4406**), [available on OSTI.GOV](https://www.osti.gov/servlets/purl/3016977):
+
+> Ethan Puyaubreau, an undergraduate ORNL summer 2025 intern from Paris-Saclay University, France,
+> worked on Kokkos' performance tool capabilities to analyze energy usage of HPC applications. The
+> results were presented at the Smoky Mountains Computational Sciences and Engineering Conference.
+
+Reference [63] of the same report: *"Ethan Puyaubreau. Understanding GPU energy dynamics in HPC
+applications. Poster presented at the Smoky Mountains Computational Sciences and Engineering
+Conference, 2025."*
+
+## Associated code
+
+Contributed upstream to [kokkos/kokkos-tools](https://github.com/kokkos/kokkos-tools):
+
+| PR | Status | Title |
+| --- | --- | --- |
+| [#300](https://github.com/kokkos/kokkos-tools/pull/300) | merged | Energy profiling tools: Add Daemon class for periodic task execution |
+| [#299](https://github.com/kokkos/kokkos-tools/pull/299) | open | Energy profiling tools: Core infrastructure with timing tool and export capabilities |
+| [#301](https://github.com/kokkos/kokkos-tools/pull/301) | open | Energy profiling tools: NVML-based measurement tool |
+| [#302](https://github.com/kokkos/kokkos-tools/pull/302) | open | Energy profiling tools: Variorum-based measurement tool |
+| [#296](https://github.com/kokkos/kokkos-tools/pull/296) | open | Combining multiple Kokkos Tools using a common interface (PoC) |
+| [#293](https://github.com/kokkos/kokkos-tools/pull/293) | merged | Update Makefiles to nvtx3 |
+
+## Cite
+
+```bibtex
+@misc{puyaubreau2025gpuenergy,
+  author    = {Puyaubreau, Ethan and Arndt, Daniel and Bludau, Jakob
+               and Lebrun-Grandi{\'e}, Damien},
+  title     = {Understanding {GPU} Energy Dynamics in {HPC} Applications},
+  howpublished = {Poster presented at the Smoky Mountains Computational
+               Sciences and Engineering Conference (SMC 2025),
+               Chattanooga, TN, USA},
+  year      = {2025},
+  month     = sep
+}
+```
+
+## Acknowledgments
+
+This material is based upon work supported by the U.S. Department of Energy, Office of Science,
+Office of Advanced Scientific Computing Research (ASCR) as part of the Next Generation of Scientific
+Software Technologies program, Stewardship of Programming Systems and Tools (S4PST) project. This
+research used resources on the Frank cluster at the University of Oregon.
+
+---
+
+The LaTeX sources of the poster are kept in a separate private repository.

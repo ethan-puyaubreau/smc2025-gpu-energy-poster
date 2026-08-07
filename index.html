@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Understanding GPU Energy Dynamics in HPC Applications — SMC 2025 poster</title>
+<meta name="description" content="Poster presented at the Smoky Mountains Computational Sciences and Engineering Conference (SMC 2025), Chattanooga, TN. GPU energy profiling for the Kokkos ecosystem, developed at Oak Ridge National Laboratory.">
+<meta name="author" content="Ethan Puyaubreau">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding GPU Energy Dynamics in HPC Applications">
+<meta property="og:description" content="Poster presented at SMC 2025, Chattanooga, TN. GPU energy profiling for the Kokkos ecosystem, developed at Oak Ridge National Laboratory.">
+<meta property="og:image" content="poster-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f6f8f7;
+    --border: #dde3e1;
+    --text: #1a1f1e;
+    --muted: #5c6866;
+    --accent: #00594f;
+    --accent-soft: #e6f0ee;
+    --link: #00594f;
+    --code-bg: #eef2f1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1413;
+      --surface: #171e1d;
+      --border: #2a3533;
+      --text: #e6ecea;
+      --muted: #9aa8a5;
+      --accent: #4db6a4;
+      --accent-soft: #16302b;
+      --link: #6fd3c0;
+      --code-bg: #1c2624;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 96px; }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 56px 0 40px;
+    margin-bottom: 48px;
+  }
+  header .wrap { padding-bottom: 0; }
+  .venue-tag {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 5px 13px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(26px, 4.6vw, 38px);
+    line-height: 1.22;
+    margin: 0 0 20px;
+    letter-spacing: -.02em;
+  }
+  .authors { margin: 0 0 6px; font-size: 16.5px; }
+  .authors .me { font-weight: 650; }
+  .affil { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .meta {
+    margin: 22px 0 0;
+    color: var(--muted);
+    font-size: 14.5px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px; border-radius: 8px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    border: 1px solid var(--accent);
+    transition: opacity .15s;
+  }
+  .btn:hover { opacity: .85; }
+  .btn-primary { background: var(--accent); color: var(--bg); }
+  .btn-ghost { color: var(--accent); background: transparent; }
+
+  h2 {
+    font-size: 20px; letter-spacing: -.01em;
+    margin: 48px 0 16px; padding-bottom: 9px;
+    border-bottom: 1px solid var(--border);
+  }
+  p { margin: 0 0 16px; }
+  a { color: var(--link); }
+
+  .figure { margin: 8px 0 0; }
+  .figure a { display: block; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .figure img { display: block; width: 100%; height: auto; }
+  .figure figcaption { margin-top: 10px; font-size: 13.5px; color: var(--muted); }
+
+  blockquote {
+    margin: 0 0 16px;
+    padding: 14px 20px;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+    color: var(--text);
+    font-size: 15px;
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+  .cite-src { font-size: 13.5px; color: var(--muted); margin-top: 10px; }
+
+  ul.prs { list-style: none; padding: 0; margin: 0; }
+  ul.prs li {
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline;
+  }
+  ul.prs li:last-child { border-bottom: 0; }
+  .badge {
+    font-size: 11.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .05em; padding: 3px 9px; border-radius: 999px;
+    white-space: nowrap;
+  }
+  .b-merged { background: #6f42c1; color: #fff; }
+  .b-open   { background: #1a7f37; color: #fff; }
+  .b-closed { background: #82061e; color: #fff; }
+  .pr-num { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 14px; }
+
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+
+  footer {
+    margin-top: 56px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 13.5px;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="venue-tag">SMC 2025 &middot; Poster</span>
+    <h1>Understanding GPU Energy Dynamics in HPC Applications</h1>
+    <p class="authors">
+      <span class="me">Ethan Puyaubreau</span><sup>1</sup>,
+      Daniel Arndt<sup>2</sup>, Jakob Bludau<sup>2</sup>, Damien Lebrun-Grandi&eacute;<sup>2</sup>
+    </p>
+    <p class="affil">
+      <sup>1</sup> Universit&eacute; Paris-Saclay, France &nbsp;&middot;&nbsp;
+      <sup>2</sup> Oak Ridge National Laboratory, Computational Science and Engineering Division
+    </p>
+    <p class="meta">
+      Presented at the Smoky Mountains Computational Sciences and Engineering Conference
+      (<a href="https://events.ornl.gov/smc2025/">SMC 2025</a>) &mdash;
+      The Westin Chattanooga, Tennessee, 31&nbsp;August&nbsp;&ndash;&nbsp;5&nbsp;September&nbsp;2025.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="smc2025-poster.pdf">Download the poster (PDF)</a>
+      <a class="btn btn-ghost" href="https://www.osti.gov/servlets/purl/3016977">Cited in the ORNL S4PST report</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h2>Abstract</h2>
+  <p>
+    Energy efficiency is becoming as decisive as raw performance in high-performance computing, yet
+    existing profiling tools struggle to attribute power draw to fine-grained computational events:
+    hardware counters sample coarsely, and software instrumentation adds significant overhead.
+  </p>
+  <p>
+    This work extends the <a href="https://github.com/kokkos/kokkos-tools">Kokkos Tools</a> framework
+    with a Variorum/NVML connector that samples GPU power from a background daemon and aligns
+    user-defined region timestamps with the power trace in a postprocessing step &mdash; requiring no
+    changes to application source code.
+  </p>
+  <p>
+    The poster characterises the resolution limits of that approach. NVML exposes instantaneous power
+    only every 100&nbsp;ms, and the value reported covers just the last 25&nbsp;ms of each interval, so
+    the sub-10&nbsp;ms kernels typical of HPC codes cannot be profiled individually. Larger user-defined
+    regions, however, remain reliably measurable. A power heatmap across compute- and memory-bound
+    workloads on an NVIDIA H100&nbsp;NVL shows that steady-state power depends strongly on workload
+    type, and an ArborX DBSCAN case study compares two implementations &mdash; <code>fdbscan</code> and
+    <code>fdbscan-dense</code> &mdash; that have the same runtime and return the same result while
+    consuming 925.1&nbsp;J and 784.8&nbsp;J respectively.
+  </p>
+  <p>
+    <strong>Minimal runtime does not imply energy efficiency.</strong> GPU power dynamics mandate
+    per-algorithm, per-hardware measurements, and current tools lack the resolution required to
+    provide them.
+  </p>
+
+  <h2>Poster</h2>
+  <figure class="figure">
+    <a href="smc2025-poster.pdf">
+      <img src="poster-preview.png"
+           alt="Poster: Understanding GPU Energy Dynamics in HPC Applications. Three columns covering introduction, Kokkos Tools energy profiling, the problem of measuring power directly, a GPU power heatmap, ArborX DBSCAN power traces, and conclusions.">
+    </a>
+    <figcaption>Click the poster to open the full-resolution PDF (30&nbsp;&times;&nbsp;40&nbsp;in).</figcaption>
+  </figure>
+
+  <h2>External reference</h2>
+  <p>
+    The work is cited in the U.S. Department of Energy technical report
+    <em>S4PST: Stewardship of Programming Systems and Tools</em> (ORNL/SPR-2026/4406):
+  </p>
+  <blockquote>
+    <p>
+      Ethan Puyaubreau, an undergraduate ORNL summer 2025 intern from Paris-Saclay University,
+      France, worked on Kokkos&rsquo; performance tool capabilities to analyze energy usage of HPC
+      applications. The results were presented at the Smoky Mountains Computational Sciences and
+      Engineering Conference.
+    </p>
+  </blockquote>
+  <p class="cite-src">
+    Reference [63] of the same report:
+    &ldquo;Ethan Puyaubreau. Understanding GPU energy dynamics in HPC applications. Poster presented
+    at the Smoky Mountains Computational Sciences and Engineering Conference, 2025.&rdquo;
+    &mdash; <a href="https://www.osti.gov/servlets/purl/3016977">read on OSTI.GOV</a>
+  </p>
+
+  <h2>Associated code</h2>
+  <p>
+    The tooling behind the poster is contributed upstream to
+    <a href="https://github.com/kokkos/kokkos-tools">kokkos/kokkos-tools</a>:
+  </p>
+  <ul class="prs">
+    <li><span class="badge b-merged">Merged</span>
+      <span class="pr-num">#300</span>
+      <a href="https://github.com/kokkos/kokkos-tools/pull/300">Energy profiling tools: Add Daemon class for periodic task execution</a></li>
+    <li><span class="badge b-open">Open</span>
+      <span class="pr-num">#299</span>
+      <a href="https://github.com/kokkos/kokkos-tools/pull/299">Energy profiling tools: Core infrastructure with timing tool and export capabilities</a></li>
+    <li><span class="badge b-open">Open</span>
+      <span class="pr-num">#301</span>
+      <a href="https://github.com/kokkos/kokkos-tools/pull/301">Energy profiling tools: NVML-based measurement tool</a></li>
+    <li><span class="badge b-open">Open</span>
+      <span class="pr-num">#302</span>
+      <a href="https://github.com/kokkos/kokkos-tools/pull/302">Energy profiling tools: Variorum-based measurement tool</a></li>
+    <li><span class="badge b-open">Open</span>
+      <span class="pr-num">#296</span>
+      <a href="https://github.com/kokkos/kokkos-tools/pull/296">Combining multiple Kokkos Tools using a common interface (PoC)</a></li>
+    <li><span class="badge b-merged">Merged</span>
+      <span class="pr-num">#293</span>
+      <a href="https://github.com/kokkos/kokkos-tools/pull/293">Update Makefiles to nvtx3</a></li>
+  </ul>
+
+  <h2>Cite this poster</h2>
+  <pre><code>@misc{puyaubreau2025gpuenergy,
+  author    = {Puyaubreau, Ethan and Arndt, Daniel and Bludau, Jakob
+               and Lebrun-Grandi{\'e}, Damien},
+  title     = {Understanding {GPU} Energy Dynamics in {HPC} Applications},
+  howpublished = {Poster presented at the Smoky Mountains Computational
+               Sciences and Engineering Conference (SMC 2025),
+               Chattanooga, TN, USA},
+  year      = {2025},
+  month     = sep
+}</code></pre>
+
+  <h2>Acknowledgments</h2>
+  <p>
+    This material is based upon work supported by the U.S. Department of Energy, Office of Science,
+    Office of Advanced Scientific Computing Research (ASCR) as part of the Next Generation of
+    Scientific Software Technologies program, Stewardship of Programming Systems and Tools (S4PST)
+    project. This research used resources on the Frank cluster at the University of Oregon.
+  </p>
+
+  <footer>
+    <p>
+      Poster &copy;&nbsp;2025 the authors &middot;
+      <a href="https://github.com/ethan-puyaubreau/smc2025-gpu-energy-poster">Source of this page on GitHub</a>
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>
