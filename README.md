@@ -4,7 +4,7 @@ Poster presented at the **Smoky Mountains Computational Sciences and Engineering
 ([SMC 2025](https://events.ornl.gov/events/smc2025/))**, The Westin Chattanooga, Tennessee,
 31 August – 5 September 2025.
 
-📄 **[Read the poster page](https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/)** ·
+**[Read the poster page](https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/)** ·
 **[Download the PDF](https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/smc2025-poster.pdf)**
 
 **Authors** — Ethan Puyaubreau (Université Paris-Saclay, France); Daniel Arndt, Jakob Bludau,
@@ -47,7 +47,7 @@ Conference, 2025."*
 
 ## Associated code
 
-Contributed upstream to [kokkos/kokkos-tools](https://github.com/kokkos/kokkos-tools):
+Contributed upstream (status as of September 2026) to [kokkos/kokkos-tools](https://github.com/kokkos/kokkos-tools):
 
 | PR | Status | Title |
 | --- | --- | --- |
