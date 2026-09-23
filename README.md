@@ -34,8 +34,8 @@ per-hardware measurements, and current tools lack the resolution required to pro
 
 ## External reference
 
-Cited in the U.S. Department of Energy technical report *S4PST: Stewardship of Programming Systems
-and Tools* (**ORNL/SPR-2026/4406**), [available on OSTI.GOV](https://www.osti.gov/servlets/purl/3016977):
+Cited in the U.S. Department of Energy technical report *S4PST 2024–2025 Project Report*
+(**ORNL/SPR-2026/4406**, January 2026), [available on OSTI.GOV](https://www.osti.gov/servlets/purl/3016977):
 
 > Ethan Puyaubreau, an undergraduate ORNL summer 2025 intern from Paris-Saclay University, France,
 > worked on Kokkos' performance tool capabilities to analyze energy usage of HPC applications. The
