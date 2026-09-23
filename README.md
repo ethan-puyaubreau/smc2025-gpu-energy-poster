@@ -1,7 +1,7 @@
 # Understanding GPU Energy Dynamics in HPC Applications
 
 Poster presented at the **Smoky Mountains Computational Sciences and Engineering Conference
-([SMC 2025](https://events.ornl.gov/smc2025/))**, The Westin Chattanooga, Tennessee,
+([SMC 2025](https://events.ornl.gov/events/smc2025/))**, The Westin Chattanooga, Tennessee,
 31 August – 5 September 2025.
 
 📄 **[Read the poster page](https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/)** ·
