@@ -18,16 +18,16 @@ hardware counters sample coarsely, and software instrumentation adds significant
 
 This work extends the [Kokkos Tools](https://github.com/kokkos/kokkos-tools) framework with a
 Variorum/NVML connector that samples GPU power from a background daemon and aligns user-defined
-region timestamps with the power trace in a postprocessing step — requiring no changes to
-application source code.
+region timestamps with the power trace in a postprocessing step. Kokkos applications need no code changes; other codes only have to
+annotate the regions of interest.
 
-The poster characterises the resolution limits of that approach. NVML exposes instantaneous power
+The poster characterizes the resolution limits of that approach. NVML exposes instantaneous power
 only every 100 ms, and the value reported covers just the last 25 ms of each interval, so the
 sub-10 ms kernels typical of HPC codes cannot be profiled individually. Larger user-defined regions,
 however, remain reliably measurable. A power heatmap across compute- and memory-bound workloads on
 an NVIDIA H100 NVL shows that steady-state power depends strongly on workload type, and an ArborX
-DBSCAN case study compares two implementations — `fdbscan` and `fdbscan-dense` — that have the same
-runtime and return the same result while consuming 925.1 J and 784.8 J respectively.
+DBSCAN case study compares two implementations, `fdbscan` and `fdbscan-dense`, which have the same runtime
+and return the same result but consume 925.1 J and 784.8 J respectively.
 
 **Minimal runtime does not imply energy efficiency.** GPU power dynamics mandate per-algorithm,
 per-hardware measurements, and current tools lack the resolution required to provide them.
