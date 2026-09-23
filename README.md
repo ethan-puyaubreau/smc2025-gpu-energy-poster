@@ -62,14 +62,15 @@ Contributed upstream (status as of September 2026) to [kokkos/kokkos-tools](http
 
 ```bibtex
 @misc{puyaubreau2025gpuenergy,
-  author    = {Puyaubreau, Ethan and Arndt, Daniel and Bludau, Jakob
-               and Lebrun-Grandi{\'e}, Damien},
-  title     = {Understanding {GPU} Energy Dynamics in {HPC} Applications},
+  author       = {Puyaubreau, Ethan and Arndt, Daniel and Bludau, Jakob
+                  and Lebrun-Grandi{\'e}, Damien},
+  title        = {Understanding {GPU} Energy Dynamics in {HPC} Applications},
   howpublished = {Poster presented at the Smoky Mountains Computational
-               Sciences and Engineering Conference (SMC 2025),
-               Chattanooga, TN, USA},
-  year      = {2025},
-  month     = sep
+                  Sciences and Engineering Conference (SMC 2025),
+                  Chattanooga, TN, USA},
+  year         = {2025},
+  month        = sep,
+  url          = {https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/}
 }
 ```
 
