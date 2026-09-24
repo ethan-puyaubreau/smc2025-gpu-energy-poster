@@ -38,12 +38,21 @@ The abstract above is the one presented in 2025. Going back to the raw power tra
 timestamps of the 64 runs of each implementation, the two DBSCAN implementations do not take the
 same time. Over the DBSCANCalculation region, the medians are 2.69 s and 777 J for `fdbscan`, and
 2.19 s and 580 J for `fdbscan-dense`: 19% less time and 25% less energy, because the dense variant
-also draws 9% less power (262 W against 288 W). The poster's energy boxes (772.8 J and 615.6 J) sum
+also draws 9% less power (262 W against 288 W). A bootstrap over the runs gives 17.6 to 19.3% less
+time and 24.9 to 26.0% less energy (95% intervals). The poster's energy boxes (772.8 J and 615.6 J) sum
 every kernel region of one run, and its totals (925.1 J and 784.8 J) include the time outside any
 region.
 
-The conclusion holds in a narrower form: a time profile reports the 19%, and the remaining six
-points only appear when energy is measured. The poster itself is left as presented. Details in
+The first 16 `fdbscan-dense` runs, consecutive at the start of the series, are about 1.5 times
+slower in every phase (3.4 to 3.9 s) and draw less power (222 W on average), which points to a
+different machine state rather than to the algorithm. They are kept in the medians above. Without
+them the comparison barely moves (19% less time, 26% less energy); with them, the means over all
+64 runs give 5% less time and 18% less energy.
+
+This data no longer supports the poster's closing line, "Minimal runtime does not imply energy
+efficiency": here the faster implementation is also the more frugal one. What it shows is that the
+energy gap (25%) is wider than the time gap (19%), so a time profile understates the gain. The
+poster itself is left as presented. Details in
 [the write-up](https://ethan-puyaubreau.github.io/blog/kokkos-gpu-energy).
 
 ## Data and reproduction
@@ -57,7 +66,7 @@ on one NVIDIA H100 NVL, three CSV files per run:
 | `<run>-nvml-regions.csv` | `name`, `type`, `start_time_epoch_ns`, `end_time_epoch_ns`, `duration_ns`: Kokkos user regions |
 | `<run>-nvml-kernels.csv` | same columns, for Kokkos kernels |
 
-Recompute every figure on this page (Python 3, standard library only):
+Recompute the figures of the re-analysis (Python 3, standard library only):
 
 ```bash
 python analysis/dbscan_medians.py

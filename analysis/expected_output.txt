@@ -1,5 +1,14 @@
 fdbscan        median of 64 runs: 2.69 s  776.8 J  287.9 W
 fdbscan-dense  median of 64 runs: 2.19 s  579.5 J  261.9 W
+fdbscan        quartiles: 2.68 to 2.70 s  762.4 to 784.8 J
+fdbscan-dense  quartiles: 2.16 to 3.14 s  571.4 to 738.7 J
 fdbscan-dense vs fdbscan: 19% less time, 25% less energy, 9% less mean power
+bootstrap 95% interval, reduction in time: 17.6% to 19.3%
+bootstrap 95% interval, reduction in energy: 24.9% to 26.0%
+fdbscan        no run is more than 30% slower than the median
+fdbscan-dense  16 slow runs, numbers 1 to 16 in job order: 3.39 to 3.88 s, mean power 222 W
+without them, fdbscan-dense vs fdbscan: 19% less time, 26% less energy
+fdbscan        mean of all runs: 2.69 s  774.8 J
+fdbscan-dense  mean of all runs: 2.55 s  635.0 J
 plotted run illyad-2778967 (fdbscan): 2.681 s  769.3 J
 plotted run illyad-2039758 (fdbscan-dense): 2.201 s  569.3 J

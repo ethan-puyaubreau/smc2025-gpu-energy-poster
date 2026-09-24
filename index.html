@@ -233,13 +233,23 @@
     same time. Over the DBSCANCalculation region, the medians are 2.69&nbsp;s and 777&nbsp;J for
     <code>fdbscan</code>, and 2.19&nbsp;s and 580&nbsp;J for <code>fdbscan-dense</code>: 19% less
     time and 25% less energy, because the dense variant also draws 9% less power
-    (262&nbsp;W against 288&nbsp;W). The poster's energy boxes (772.8&nbsp;J and 615.6&nbsp;J) sum
+    (262&nbsp;W against 288&nbsp;W). A bootstrap over the runs gives 17.6 to 19.3% less time and
+    24.9 to 26.0% less energy (95% intervals). The poster's energy boxes (772.8&nbsp;J and 615.6&nbsp;J) sum
     every kernel region of one run, and its totals (925.1&nbsp;J and 784.8&nbsp;J) include the time
     outside any region.
   </p>
   <p>
-    The conclusion holds in a narrower form: a time profile reports the 19%, and the remaining six
-    points only appear when energy is measured. The poster itself is left as presented. Details in
+    The first 16 <code>fdbscan-dense</code> runs, consecutive at the start of the series, are about
+    1.5 times slower in every phase (3.4 to 3.9&nbsp;s) and draw less power (222&nbsp;W on average),
+    which points to a different machine state rather than to the algorithm. They are kept in the
+    medians above. Without them the comparison barely moves (19% less time, 26% less energy); with
+    them, the means over all 64 runs give 5% less time and 18% less energy.
+  </p>
+  <p>
+    This data no longer supports the poster's closing line, &ldquo;Minimal runtime does not imply
+    energy efficiency&rdquo;: here the faster implementation is also the more frugal one. What it
+    shows is that the energy gap (25%) is wider than the time gap (19%), so a time profile
+    understates the gain. The poster itself is left as presented. Details in
     <a href="https://ethan-puyaubreau.github.io/blog/kokkos-gpu-energy">the write-up</a>.
   </p>
 
