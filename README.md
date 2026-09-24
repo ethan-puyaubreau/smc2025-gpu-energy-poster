@@ -71,8 +71,8 @@ Contributed upstream (status as of September 2026) to [kokkos/kokkos-tools](http
 | [#300](https://github.com/kokkos/kokkos-tools/pull/300) | merged | Energy profiling tools: Add Daemon class for periodic task execution |
 | [#299](https://github.com/kokkos/kokkos-tools/pull/299) | open | Energy profiling tools: Core infrastructure with timing tool and export capabilities |
 | [#301](https://github.com/kokkos/kokkos-tools/pull/301) | open | Energy profiling tools: NVML-based measurement tool |
-| [#302](https://github.com/kokkos/kokkos-tools/pull/302) | open | Energy profiling tools: Variorum-based measurement tool |
-| [#296](https://github.com/kokkos/kokkos-tools/pull/296) | open | Combining multiple Kokkos Tools using a common interface (PoC) |
+| [#302](https://github.com/kokkos/kokkos-tools/pull/302) | draft | Energy profiling tools: Variorum-based measurement tool |
+| [#296](https://github.com/kokkos/kokkos-tools/pull/296) | draft | Combining multiple Kokkos Tools using a common interface (PoC) |
 | [#293](https://github.com/kokkos/kokkos-tools/pull/293) | merged | Update Makefiles to nvtx3 |
 
 ## Cite
