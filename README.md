@@ -64,7 +64,19 @@ python analysis/dbscan_medians.py
 ```
 
 The output must match [`analysis/expected_output.txt`](analysis/expected_output.txt); the
-[Reproduce workflow](.github/workflows/reproduce.yml) checks it on every push.
+[Reproduce workflow](.github/workflows/reproduce.yml) checks it on every push. The poster's own
+boxes and totals came from its 2025 plotting script and are not recomputed here.
+
+To attribute the energy of a run to every region and kernel, convert it to the trace format of
+[energy-dashboard-for-kokkos](https://github.com/ethan-puyaubreau/energy-dashboard-for-kokkos) and analyze it:
+
+```bash
+python analysis/to_trace_v1.py data/fdbscan/illyad-2778967 trace/
+energy-dashboard-for-kokkos analyze trace/
+```
+
+The tool interpolates power at region boundaries, so it reads about 2 J more than the script for
+the same region (771.8 J against 769.3 J for this run).
 
 ## External reference
 

@@ -72,8 +72,8 @@
     font-weight: 600;
     letter-spacing: .08em;
     text-transform: uppercase;
-    color: var(--accent);
-    background: var(--accent-soft);
+    color: var(--muted);
+    background: transparent;
     border-radius: 999px;
     padding: 5px 13px;
     margin-bottom: 18px;
@@ -123,7 +123,7 @@
   blockquote {
     margin: 0 0 16px;
     padding: 14px 20px;
-    border-left: 3px solid var(--accent);
+    border-left: 3px solid var(--border);
     background: var(--surface);
     border-radius: 0 8px 8px 0;
     color: var(--text);
@@ -144,10 +144,10 @@
     letter-spacing: .05em; padding: 3px 9px; border-radius: 999px;
     white-space: nowrap;
   }
-  .b-merged { background: #6f42c1; color: #fff; }
-  .b-open   { background: #1a7f37; color: #fff; }
+  .b-merged { background: var(--text); color: var(--bg); }
+  .b-open   { background: transparent; color: var(--text); box-shadow: inset 0 0 0 1px var(--text); }
   .b-closed { background: #82061e; color: #fff; }
-  .b-draft  { background: #59636e; color: #fff; }
+  .b-draft  { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--border); }
   .pr-num { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 14px; }
 
   pre {
@@ -248,9 +248,17 @@
     The raw data behind these figures is published with this page: the NVML power trace, Kokkos
     region timestamps and kernel timestamps of the 64 runs of each implementation
     (<a href="https://github.com/ethan-puyaubreau/smc2025-gpu-energy-poster/tree/main/data">data/</a>, 3.4&nbsp;MB of CSV), and a standard-library Python
-    script that recomputes every number above
+    script that recomputes the medians and the two plotted runs from them
     (<a href="https://github.com/ethan-puyaubreau/smc2025-gpu-energy-poster/blob/main/analysis/dbscan_medians.py">analysis/dbscan_medians.py</a>).
-    A CI job reruns it on every push and compares its output with the published figures.
+    A CI job reruns it on every push and compares its output with the published figures. The
+    poster's own boxes and totals came from its 2025 plotting script and are not recomputed here.
+  </p>
+  <p>
+    <a href="https://github.com/ethan-puyaubreau/smc2025-gpu-energy-poster/blob/main/analysis/to_trace_v1.py">analysis/to_trace_v1.py</a> converts any run
+    into the trace format of <a href="https://github.com/ethan-puyaubreau/energy-dashboard-for-kokkos">energy-dashboard-for-kokkos</a>, which then attributes
+    the energy to every region and kernel. The tool interpolates power at region boundaries, so it
+    reads about 2&nbsp;J more than the script for the same region (771.8&nbsp;J against
+    769.3&nbsp;J for the plotted <code>fdbscan</code> run).
   </p>
 
   <h2>Poster</h2>

@@ -19,3 +19,8 @@ jobs:
         run: python analysis/dbscan_medians.py | tee output.txt
       - name: Compare with the published figures
         run: diff -u analysis/expected_output.txt output.txt
+      - name: Convert a run to the energy-dashboard-for-kokkos trace format
+        run: |
+          python analysis/to_trace_v1.py data/fdbscan/illyad-2778967 trace
+          head -2 trace/events.csv | grep -q '^1,0,DBSCANCalculation,USER_REGION,'
+          test "$(wc -l < trace/power_samples.csv)" -eq "$(wc -l < data/fdbscan/illyad-2778967-nvml-power.csv)"
