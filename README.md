@@ -32,6 +32,20 @@ and return the same result but consume 925.1 J and 784.8 J respectively.
 **Minimal runtime does not imply energy efficiency.** GPU power dynamics mandate per-algorithm,
 per-hardware measurements, and current tools lack the resolution required to provide them.
 
+## Re-analysis, September 2026
+
+The abstract above is the one presented in 2025. Going back to the raw power traces and region
+timestamps of the 64 runs of each implementation, the two DBSCAN implementations do not take the
+same time. Over the DBSCANCalculation region, the medians are 2.69 s and 777 J for `fdbscan`, and
+2.19 s and 580 J for `fdbscan-dense`: 19% less time and 25% less energy, because the dense variant
+also draws 9% less power (262 W against 288 W). The poster's energy boxes (772.8 J and 615.6 J) sum
+every kernel region of one run, and its totals (925.1 J and 784.8 J) include the time outside any
+region.
+
+The conclusion holds in a narrower form: a time profile reports the 19%, and the remaining six
+points only appear when energy is measured. The poster itself is left as presented. Details in
+[the write-up](https://ethan-puyaubreau.github.io/blog/kokkos-gpu-energy).
+
 ## External reference
 
 Cited in the U.S. Department of Energy technical report *S4PST 2024–2025 Project Report*
@@ -44,6 +58,9 @@ Cited in the U.S. Department of Energy technical report *S4PST 2024–2025 Proje
 Reference [63] of the same report: *"Ethan Puyaubreau. Understanding GPU energy dynamics in HPC
 applications. Poster presented at the Smoky Mountains Computational Sciences and Engineering
 Conference, 2025."*
+
+My appointment title was Graduate Research Fellow (GRO program); I was then in the master's-level
+engineering cycle at Polytech Paris-Saclay.
 
 ## Associated code
 
