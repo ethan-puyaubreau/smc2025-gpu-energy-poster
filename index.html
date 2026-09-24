@@ -5,39 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Understanding GPU Energy Dynamics in HPC Applications — SMC 2025 poster</title>
 <meta name="description" content="Poster presented at the Smoky Mountains Computational Sciences and Engineering Conference (SMC 2025), Chattanooga, TN. GPU energy profiling for the Kokkos ecosystem, developed at Oak Ridge National Laboratory.">
-<meta name="author" content="Ethan Puyaubreau">\n<link rel="icon" href="data:,">
+<meta name="author" content="Ethan Puyaubreau">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&display=swap">
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="Understanding GPU Energy Dynamics in HPC Applications">
 <meta property="og:description" content="Poster presented at SMC 2025, Chattanooga, TN. GPU energy profiling for the Kokkos ecosystem, developed at Oak Ridge National Laboratory.">
-<meta property="og:image" content="https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/poster-card.jpg">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="Top of the SMC 2025 poster: title, authors, introduction and power heatmap.">
+<meta property="og:image" content="https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/poster-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Top of the SMC 2025 poster: title, authors, introduction and power heatmap.">
 <meta property="og:url" content="https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/">
 <link rel="canonical" href="https://ethan-puyaubreau.github.io/smc2025-gpu-energy-poster/">
 <meta name="twitter:card" content="summary_large_image">
 
 <style>
+  /* Same palette and type as ethan-puyaubreau.github.io. */
   :root {
-    --bg: #ffffff;
-    --surface: #f6f8f7;
-    --border: #dde3e1;
-    --text: #1a1f1e;
-    --muted: #5c6866;
-    --accent: #00594f;
-    --accent-soft: #e6f0ee;
-    --link: #00594f;
-    --code-bg: #eef2f1;
+    --bg: #f7f7f5;
+    --surface: #eeeeeb;
+    --border: #dcdcd8;
+    --text: #111111;
+    --muted: #5f5f5c;
+    --accent: #b93a0a;
+    --accent-soft: #f3e3dc;
+    --link: #9a3412;
+    --code-bg: #e9e9e5;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0f1413;
-      --surface: #171e1d;
-      --border: #2a3533;
-      --text: #e6ecea;
-      --muted: #9aa8a5;
-      --accent: #4db6a4;
-      --accent-soft: #16302b;
-      --link: #6fd3c0;
-      --code-bg: #1c2624;
+      --bg: #111111;
+      --surface: #1a1a1a;
+      --border: #2e2e2c;
+      --text: #f2f2ef;
+      --muted: #9b9b96;
+      --accent: #f07b4f;
+      --accent-soft: #3a2118;
+      --link: #f5a27f;
+      --code-bg: #1f1f1d;
     }
   }
 
@@ -46,7 +54,7 @@
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font: 16px/1.65 "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
   .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 96px; }
@@ -139,6 +147,7 @@
   .b-merged { background: #6f42c1; color: #fff; }
   .b-open   { background: #1a7f37; color: #fff; }
   .b-closed { background: #82061e; color: #fff; }
+  .b-draft  { background: #59636e; color: #fff; }
   .pr-num { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 14px; }
 
   pre {
@@ -282,10 +291,10 @@
     <li><span class="badge b-open">Open</span>
       <span class="pr-num">#301</span>
       <a href="https://github.com/kokkos/kokkos-tools/pull/301">Energy profiling tools: NVML-based measurement tool</a></li>
-    <li><span class="badge b-open">Open</span>
+    <li><span class="badge b-draft">Draft</span>
       <span class="pr-num">#302</span>
       <a href="https://github.com/kokkos/kokkos-tools/pull/302">Energy profiling tools: Variorum-based measurement tool</a></li>
-    <li><span class="badge b-open">Open</span>
+    <li><span class="badge b-draft">Draft</span>
       <span class="pr-num">#296</span>
       <a href="https://github.com/kokkos/kokkos-tools/pull/296">Combining multiple Kokkos Tools using a common interface (PoC)</a></li>
     <li><span class="badge b-merged">Merged</span>
