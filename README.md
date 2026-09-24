@@ -46,6 +46,26 @@ The conclusion holds in a narrower form: a time profile reports the 19%, and the
 points only appear when energy is measured. The poster itself is left as presented. Details in
 [the write-up](https://ethan-puyaubreau.github.io/blog/kokkos-gpu-energy).
 
+## Data and reproduction
+
+`data/fdbscan/` and `data/fdbscan-dense/` hold the 64 runs of each ArborX DBSCAN implementation
+on one NVIDIA H100 NVL, three CSV files per run:
+
+| File | Columns |
+| --- | --- |
+| `<run>-nvml-power.csv` | `time_epoch_ns`, `power_w`: GPU power read through NVML about every 20 ms |
+| `<run>-nvml-regions.csv` | `name`, `type`, `start_time_epoch_ns`, `end_time_epoch_ns`, `duration_ns`: Kokkos user regions |
+| `<run>-nvml-kernels.csv` | same columns, for Kokkos kernels |
+
+Recompute every figure on this page (Python 3, standard library only):
+
+```bash
+python analysis/dbscan_medians.py
+```
+
+The output must match [`analysis/expected_output.txt`](analysis/expected_output.txt); the
+[Reproduce workflow](.github/workflows/reproduce.yml) checks it on every push.
+
 ## External reference
 
 Cited in the U.S. Department of Energy technical report *S4PST 2024–2025 Project Report*

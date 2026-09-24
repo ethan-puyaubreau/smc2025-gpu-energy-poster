@@ -1,0 +1,33 @@
+name,type,start_time_epoch_ns,end_time_epoch_ns,duration_ns
+ArborX::TreeConstruction::calculate_bounding_box_of_the_scene,parallel_reduce,1754509754408824081,1754509754461511533,52687452
+ArborX::DBSCAN::compute_cell_indices,parallel_for,1754509754462419064,1754509754468012575,5593511
+ArborX::Algorithms::iota,parallel_for,1754509754468589305,1754509754471318496,2729191
+ArborX::Algorithms::compute_offsets_in_sorted_view,parallel_scan,1754509754543626013,1754509754562183778,18557765
+Kokkos::ViewCopy-1D,parallel_for,1754509754562680398,1754509754564525258,1844860
+ArborX::DBSCAN::count_points_in_dense_cells,parallel_reduce,1754509754566038219,1754509754567068189,1029970
+Kokkos::View::initialization [ArborX::DBSCAN::dense_offset] via memset,parallel_for,1754509754567101649,1754509754567116199,14550
+Kokkos::View::initialization [ArborX::DBSCAN::sparse_offset] via memset,parallel_for,1754509754567135709,1754509754567144759,9050
+Kokkos::ViewFill-1D,parallel_for,1754509754567155609,1754509754567195949,40340
+ArborX::DBSCAN::reorder_cell_indices_and_permutation,parallel_for,1754509754568210359,1754509754807427467,239217108
+ArborX::Algorithms::compute_offsets_in_sorted_view,parallel_scan,1754509754816860429,1754509754822315040,5454611
+Kokkos::ViewCopy-1D,parallel_for,1754509754822499080,1754509754822839590,340510
+Kokkos::ViewCopy-1D,parallel_for,1754509754823932901,1754509754823936111,3210
+ArborX::Algorithms::iota,parallel_for,1754509754823948461,1754509754826634841,2686380
+ArborX::DBSCAN::union_find_within_each_dense_box,parallel_for,1754509754826640521,1754509754836772974,10132453
+ArborX::TreeConstruction::calculate_bounding_box_of_the_scene,parallel_reduce,1754509754842928005,1754509754861506260,18578255
+ArborX::SpaceFillingCurve::project_onto_space_filling_curve,parallel_for,1754509754862089350,1754509754871164142,9074792
+ArborX::Algorithms::iota,parallel_for,1754509754871513552,1754509754873301572,1788020
+Kokkos::ViewFill-1D,parallel_for,1754509754923864995,1754509754925701255,1836260
+ArborX::TreeConstruction::generate_hierarchy,parallel_for,1754509754925705555,1754509754989328340,63622785
+ArborX::SpaceFillingCurve::project_onto_space_filling_curve,parallel_for,1754509754995807722,1754509755001095083,5287361
+ArborX::Algorithms::iota,parallel_for,1754509755002671324,1754509755005357194,2685870
+ArborX::TreeTraversal::spatial,parallel_for,1754509755034997721,1754509756419958894,1384961173
+Kokkos::View::initialization [ArborX::DBSCAN::cluster_sizes] via memset,parallel_for,1754509756443788500,1754509756444829400,1040900
+ArborX::DBSCAN::finalize_labels,parallel_for,1754509756444835300,1754509756579366463,134531163
+ArborX::DBSCAN::mark_noise,parallel_for,1754509756579407853,1754509756582521474,3113621
+Kokkos::View::initialization [ArborX::DBSCAN::cluster_sizes] via memset,parallel_for,1754509756584595454,1754509756585627784,1032330
+ArborX::DBSCAN::compute_cluster_sizes,parallel_for,1754509756585634654,1754509756714837785,129203131
+ArborX::DBSCAN::compute_cluster_offset_with_filter,parallel_scan,1754509756720053167,1754509756730456739,10403572
+Kokkos::ViewCopy-1D,parallel_for,1754509756730837579,1754509756731030199,192620
+Kokkos::exclusive_scan_default_functors_view_api,parallel_scan,1754509756732533190,1754509756733314630,781440
+ArborX::DBSCAN::compute_cluster_indices,parallel_for,1754509756734099400,1754509756861201051,127101651

@@ -243,6 +243,16 @@
     <a href="https://ethan-puyaubreau.github.io/blog/kokkos-gpu-energy">the write-up</a>.
   </p>
 
+  <h2>Data and reproduction</h2>
+  <p>
+    The raw data behind these figures is published with this page: the NVML power trace, Kokkos
+    region timestamps and kernel timestamps of the 64 runs of each implementation
+    (<a href="https://github.com/ethan-puyaubreau/smc2025-gpu-energy-poster/tree/main/data">data/</a>, 3.4&nbsp;MB of CSV), and a standard-library Python
+    script that recomputes every number above
+    (<a href="https://github.com/ethan-puyaubreau/smc2025-gpu-energy-poster/blob/main/analysis/dbscan_medians.py">analysis/dbscan_medians.py</a>).
+    A CI job reruns it on every push and compares its output with the published figures.
+  </p>
+
   <h2>Poster</h2>
   <figure class="figure">
     <a href="smc2025-poster.pdf">

@@ -1,0 +1,5 @@
+fdbscan        median of 64 runs: 2.69 s  776.8 J  287.9 W
+fdbscan-dense  median of 64 runs: 2.19 s  579.5 J  261.9 W
+fdbscan-dense vs fdbscan: 19% less time, 25% less energy, 9% less mean power
+plotted run illyad-2778967 (fdbscan): 2.681 s  769.3 J
+plotted run illyad-2039758 (fdbscan-dense): 2.201 s  569.3 J
