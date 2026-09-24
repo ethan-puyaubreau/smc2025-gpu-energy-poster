@@ -103,6 +103,13 @@ Conference, 2025."*
 My appointment title was Graduate Research Fellow (GRO program); I was then in the master's-level
 engineering cycle at Polytech Paris-Saclay.
 
+## License
+
+The scripts in [`analysis/`](analysis) are under the [MIT license](analysis/LICENSE). The poster,
+its figures and the traces in `data/` were produced at Oak Ridge National Laboratory and are not
+under an open license yet: they are published for reading and reproduction, and reuse terms will
+follow once ORNL has confirmed them.
+
 ## Associated code
 
 Contributed upstream (status as of September 2026) to [kokkos/kokkos-tools](https://github.com/kokkos/kokkos-tools):
