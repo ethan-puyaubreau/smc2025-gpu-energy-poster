@@ -106,9 +106,9 @@ engineering cycle at Polytech Paris-Saclay.
 ## License
 
 The scripts in [`analysis/`](analysis) are under the [MIT license](analysis/LICENSE). The poster,
-its figures and the traces in `data/` were produced at Oak Ridge National Laboratory and are not
-under an open license yet: they are published for reading and reproduction, and reuse terms will
-follow once ORNL has confirmed them.
+its figures and the traces in `data/` are under the
+[Creative Commons Attribution 4.0 International license](LICENSE) (CC BY 4.0): they can be
+reused freely, crediting the poster as shown in [Cite](#cite).
 
 ## Associated code
 
