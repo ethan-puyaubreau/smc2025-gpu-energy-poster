@@ -100,8 +100,8 @@ Reference [63] of the same report: *"Ethan Puyaubreau. Understanding GPU energy 
 applications. Poster presented at the Smoky Mountains Computational Sciences and Engineering
 Conference, 2025."*
 
-I was a summer research intern in the GRO program (Graduate Research at ORNL), then in the
-master's-level engineering cycle at Polytech Paris-Saclay.
+I was a Research Intern, Graduate Research at ORNL (GRO); I was then in the master's-level
+engineering cycle at Polytech Paris-Saclay.
 
 ## License
 
